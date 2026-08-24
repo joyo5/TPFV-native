@@ -1,3 +1,5 @@
+# Application principale
+
 import tkinter as tk
 
 class Principale(tk.Frame):
@@ -11,8 +13,12 @@ class Principale(tk.Frame):
         self.label_role = tk.Label(self, text="", font=("Arial", 14))
         self.label_role.pack(pady=10)
         
-        self.label_password = tk.Label(self, text="", font=("Arial", 14))
-        self.label_password.pack(pady=10)
+        bouton_nouveau_patient = tk.Button(
+            self, 
+            text="Créer un nouveau patient", 
+            command=lambda: self.controleur.afficher_page("NouveauPatient")
+        )
+        bouton_nouveau_patient.pack(pady=10)
         
         bouton_retour = tk.Button(
             self, 
@@ -22,6 +28,4 @@ class Principale(tk.Frame):
         bouton_retour.pack(pady=20)
         
     def actualiser(self):
-
         self.label_role.config(text=f"Rôle sélectionné: {self.controleur.role}")
-        self.label_password.config(text=f"Mot de passe: {self.controleur.password}")

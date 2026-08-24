@@ -3,6 +3,7 @@
 import tkinter as tk
 from views.connexion import Connexion
 from views.principale import Principale
+from views.nouveau_patient import NouveauPatient
 
 class Application(tk.Tk):
     def __init__(self):
@@ -17,7 +18,7 @@ class Application(tk.Tk):
         
         self.pages = {}
         
-        for P in (Connexion, Principale):
+        for P in (Connexion, Principale, NouveauPatient):
             nom_page = P.__name__
             frame = P(parent=conteneur, controleur=self)
             self.pages[nom_page] = frame
