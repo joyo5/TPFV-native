@@ -1,5 +1,6 @@
 # Ecran de connexion
 
+from database import verifier_connexion
 import tkinter as tk
 from tkinter import ttk, messagebox
 
@@ -31,16 +32,10 @@ class Connexion(tk.Frame):
         role = self.combobox.get()
         password = self.password_entry.get()
         
-        if role == "Accueil / Pharmacie" and password != "2026":
-            messagebox.showerror("Erreur", "Mot de passe incorrect pour le rôle sélectionné.")
-            return
-        elif role == "Médecin / Paramed" and password != "2026":
-            messagebox.showerror("Erreur", "Mot de passe incorrect pour le rôle sélectionné.")
-            return
-        elif role == "Admin" and password != "2026":
-            messagebox.showerror("Erreur", "Mot de passe incorrect pour le rôle sélectionné.")
-            return
-
-        self.controleur.role = role
-        self.controleur.password = password
-        self.controleur.afficher_page("Principale")
+        if verifier_connexion(role, password):
+            self.controleur.role = role
+            self.controleur.password = password
+            self.controleur.afficher_page("Principale")
+            
+        else:
+            messagebox.showerror("Erreur", "Rôle ou mot de passe incorrect.")
